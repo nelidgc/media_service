@@ -14,7 +14,7 @@ services:
       ND_MUSICFOLDER: /music
 
     volumes:
-      - ./data:/data
+      - /opt/navidrome/data:/data
       - /mnt/music:/music/sftp:ro
       - /mnt/yandex:/music/yandex:ro
 

@@ -5,8 +5,8 @@ services:
     environment:
       TZ: Asia/Novosibirsk
     volumes:
-      - ./config:/config
-      - ./metadata:/metadata
+      - /opt/audiobookshelf/config:/config
+      - /opt/audiobookshelf/metadata:/metadata
       - /mnt/audiobooks:/audiobooks
       - /mnt/books/BookOrbit/Ebooks:/books/ebooks
 

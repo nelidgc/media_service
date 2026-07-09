@@ -15,7 +15,7 @@ services:
       - /mnt/books/BookOrbit/BookDock:/books/BookDock
       - /mnt/books/BookOrbit/Comics:/books/Comics
 
-      - ./app:/data
+      - /opt/bookorbit/data/app:/data
 
     depends_on:
       bookorbit-db:
@@ -34,7 +34,7 @@ services:
       - .env
 
     volumes:
-      - ./postgres:/var/lib/postgresql/data
+      - /opt/bookorbit/data/postgres:/var/lib/postgresql/data
 
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $POSTGRES_USER"]

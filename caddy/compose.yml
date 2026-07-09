@@ -9,8 +9,8 @@ services:
 
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile
-      - ./data:/data
-      - ./config:/config
+      - /opt/navidrome/caddy/data:/data
+      - /opt/navidrome/caddy/config:/config
 
     restart: unless-stopped
 
