@@ -1,0 +1,51 @@
+services:
+  bookorbit-app:
+    image: ghcr.io/bookorbit/bookorbit:latest
+    container_name: bookorbit-app
+    restart: unless-stopped
+    init: true
+
+    env_file:
+      - .env
+
+    volumes:
+      - /mnt/books/BookOrbit/Ebooks:/books/Ebooks
+      - /mnt/books/BookOrbit/Audiobooks:/books/Audiobooks
+      - /mnt/books/BookOrbit/Mixed:/books/Mixed
+      - /mnt/books/BookOrbit/BookDock:/books/BookDock
+      - /mnt/books/BookOrbit/Comics:/books/Comics
+
+      - ./app:/data
+
+    depends_on:
+      bookorbit-db:
+        condition: service_healthy
+
+    networks:
+      - media_net
+
+  bookorbit-db:
+    image: pgvector/pgvector:pg16
+    container_name: bookorbit-db
+
+    restart: unless-stopped
+
+    env_file:
+      - .env
+
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $POSTGRES_USER"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 60s
+
+    networks:
+      - media_net
+
+networks:
+  media_net:
+    external: true

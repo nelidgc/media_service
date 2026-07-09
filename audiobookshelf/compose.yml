@@ -1,0 +1,19 @@
+services:
+  audiobookshelf:
+    image: ghcr.io/advplyr/audiobookshelf:latest
+    container_name: audiobookshelf
+    environment:
+      TZ: Asia/Novosibirsk
+    volumes:
+      - ./config:/config
+      - ./metadata:/metadata
+      - /mnt/audiobooks:/audiobooks
+      - /mnt/books/BookOrbit/Ebooks:/books/ebooks
+
+    restart: unless-stopped
+
+    networks:
+      - media_net
+networks:
+  media_net:
+    external: true

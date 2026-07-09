@@ -1,0 +1,28 @@
+services:
+  navidrome:
+    image: deluan/navidrome: latest
+    container_name: navidrome
+
+    user: "1000:1000"
+
+    environment:
+      ND_SCANSCHEDULE: 1h
+      ND_LOGLEVEL: info
+      ND_SESSIONTIMEOUT: 720h
+      ND_ENABLESHARING: "false"
+      ND_ENABLEDOWNLOADS: "true"
+      ND_MUSICFOLDER: /music
+
+    volumes:
+      - ./data:/data
+      - /mnt/music:/music/sftp:ro
+      - /mnt/yandex:/music/yandex:ro
+
+    restart: unless-stopped
+
+    netwirks:
+      - media_net
+networks:
+  media_net:
+    external: true
+  
