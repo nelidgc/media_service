@@ -20,7 +20,7 @@ services:
 
     restart: unless-stopped
 
-    netwirks:
+    networks:
       - media_net
 networks:
   media_net:
