@@ -8,7 +8,7 @@ services:
       - /opt/audiobookshelf/config:/config
       - /opt/audiobookshelf/metadata:/metadata
       - /mnt/audiobooks:/audiobooks
-      - /mnt/books/BookOrbit/Ebooks:/books/ebooks
+      - /mnt/bookshelf:/books/ebooks
 
     restart: unless-stopped
 
